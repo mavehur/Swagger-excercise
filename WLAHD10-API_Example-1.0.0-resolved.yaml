@@ -1,0 +1,71 @@
+---
+openapi: 3.0.0
+info:
+  title: API_Example
+  description: API_Example for learning Swagger
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/WLAHD10/API_Example/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: https://jsonplaceholder.typicode.com
+  description: JSON Placeholder API
+- url: http://www.google.com
+  description: Google autocomplete API
+paths:
+  /todos/{id}:
+    get:
+      summary: Returns a user by ID
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the user to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+  /complete/search:
+    get:
+      summary: return a result of autocomplete searching
+      parameters:
+      - name: q
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: client
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: A Text File
+          content:
+            text/plain:
+              schema:
+                type: string
+components:
+  schemas:
+    inline_response_200:
+      type: object
+      properties:
+        userId:
+          type: integer
+        id:
+          type: integer
+        title:
+          type: integer
+        completed:
+          type: boolean
